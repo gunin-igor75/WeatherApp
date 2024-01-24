@@ -9,7 +9,7 @@ import com.github.gunin_igor75.weatherapp.data.local.model.CityDbModel
 @Database(entities = [CityDbModel::class], version = 1, exportSchema = false)
 abstract class FavoriteDataBase : RoomDatabase() {
 
-    abstract fun favoriteCitiesDa(): FavoriteCitiesDao
+    abstract fun favoriteCitiesDao(): FavoriteCitiesDao
 
     companion object {
         private const val DB_NAME = "FavoriteDataBase"

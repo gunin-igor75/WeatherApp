@@ -6,8 +6,9 @@ import com.github.gunin_igor75.weatherapp.data.network.api.ApiService
 import com.github.gunin_igor75.weatherapp.domain.entity.Forecast
 import com.github.gunin_igor75.weatherapp.domain.entity.Weather
 import com.github.gunin_igor75.weatherapp.domain.repositoriy.WeatherRepository
+import javax.inject.Inject
 
-class WeatherRepositoryImpl(
+class WeatherRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : WeatherRepository {
 
