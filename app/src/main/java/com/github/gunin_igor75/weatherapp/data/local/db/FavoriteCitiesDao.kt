@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface FavoriteCitiesDao {
 
     @Query("SELECT * FROM favorite_cities")
-    fun getFavoriteCities(): Flow<CityDbModel>
+    fun getFavoriteCities(): Flow<List<CityDbModel>>
 
     @Query("SELECT EXISTS(SELECT * FROM favorite_cities WHERE id = :cityId LIMIT 1)")
     fun observeIsFavorite(cityId: Int): Flow<Boolean>
