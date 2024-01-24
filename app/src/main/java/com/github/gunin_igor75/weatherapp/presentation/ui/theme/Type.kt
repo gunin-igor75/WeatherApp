@@ -1,4 +1,4 @@
-package com.github.gunin_igor75.weatherapp.ui.theme
+package com.github.gunin_igor75.weatherapp.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

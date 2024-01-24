@@ -1,4 +1,4 @@
-package com.github.gunin_igor75.weatherapp.ui.theme
+package com.github.gunin_igor75.weatherapp.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
