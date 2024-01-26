@@ -19,7 +19,7 @@ interface FavoriteStore : Store<Intent, State, Label> {
     sealed interface Intent {
         data object ClickSearch : Intent
         data class ClickCityItem(val city: City) : Intent
-        data object ClickAddFavorite : Intent
+        data object ClickAddToFavorite : Intent
     }
 
     data class State(
@@ -98,7 +98,7 @@ class FavoriteStoreFactory @Inject constructor(
     private inner class ExecutorImpl : CoroutineExecutor<Intent, Action, State, Msg, Label>() {
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
-                Intent.ClickAddFavorite -> {
+                Intent.ClickAddToFavorite -> {
                     publish(Label.ClickAddFavorite)
                 }
 
