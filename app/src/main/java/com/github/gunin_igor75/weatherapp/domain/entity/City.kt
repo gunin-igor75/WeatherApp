@@ -8,4 +8,13 @@ data class City(
     val id: Int,
     val name: String,
     val country: String
-): Parcelable
+): Parcelable{
+
+    companion object{
+        val DEFAULT:City = City(
+            id = 0,
+            name = "Москва",
+            country = "Россия"
+        )
+    }
+}

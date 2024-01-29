@@ -1,37 +1,30 @@
 package com.github.gunin_igor75.weatherapp.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.github.gunin_igor75.weatherapp.data.network.api.ApiFactory
+import com.arkivanov.decompose.defaultComponentContext
+import com.github.gunin_igor75.weatherapp.WeatherApp
+import com.github.gunin_igor75.weatherapp.presentation.root.DefaultRootComponent
+import com.github.gunin_igor75.weatherapp.presentation.root.RootContent
 import com.github.gunin_igor75.weatherapp.presentation.ui.theme.WeatherAppTheme
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var defaultRootComponentFactory: DefaultRootComponent.Factory
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        (applicationContext as WeatherApp).component.inject(this)
         super.onCreate(savedInstanceState)
-        val apiService = ApiFactory.apiService
-        val scope = CoroutineScope(Dispatchers.Main.immediate)
-        scope.launch {
-            val currentWeather = apiService.loadCurrentWeather("london")
-            Log.d("MainActivity", currentWeather.toString())
-        }
-        scope.launch {
-            val forecast = apiService.loadForecast("london")
-            Log.d("MainActivity", forecast.toString())
-        }
-
-        scope.launch {
-            val cities = apiService.searchCity("lon")
-            Log.d("MainActivity", cities.toString())
-        }
-
         setContent {
             WeatherAppTheme {
-
+                RootContent(
+                    rootComponent = defaultRootComponentFactory.create(
+                        defaultComponentContext()
+                    )
+                )
             }
         }
     }

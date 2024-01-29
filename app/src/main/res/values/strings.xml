@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="search">Search</string>
+    <string name="description_icon_back">Icon Back</string>
+    <string name="description_icon_search">Icon Search</string>
+    <string name="search_not_found">На Ваш запрос ничего не найдено</string>
 </resources>
