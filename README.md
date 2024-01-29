@@ -8,6 +8,7 @@
 
 В проекте применены следующие технолонии
 - kotlin
+- compose
 - retrofit
 - coroutine, flow
 - decompose
