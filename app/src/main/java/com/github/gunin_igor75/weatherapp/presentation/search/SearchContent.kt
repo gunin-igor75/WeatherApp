@@ -27,7 +27,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -37,6 +39,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.github.gunin_igor75.weatherapp.R
 import com.github.gunin_igor75.weatherapp.domain.entity.City
+import com.github.gunin_igor75.weatherapp.presentation.components.ErrorToast
+import java.util.Timer
+import kotlin.concurrent.schedule
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,6 +51,19 @@ fun SearchContent(
     val state by component.model.collectAsState()
     val focusRequest = remember {
         FocusRequester()
+    }
+
+    var isToastVisible by remember {
+        mutableStateOf(false)
+    }
+
+    val onJoinClickAction: (Boolean) -> Unit = { error ->
+        isToastVisible = error
+        if (isToastVisible) {
+            Timer().schedule(3000) {
+                isToastVisible = false
+            }
+        }
     }
 
     LaunchedEffect(key1 = Unit) {
@@ -83,7 +101,9 @@ fun SearchContent(
             }
 
             SearchStore.State.SearchState.Error -> {
-                ErrorResult()
+                LaunchedEffect(key1 = Unit) {
+                    onJoinClickAction(true)
+                }
             }
 
             SearchStore.State.SearchState.Initial -> {
@@ -104,6 +124,13 @@ fun SearchContent(
             }
         }
 
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.TopStart
+        ) {
+            ErrorToast(visible = isToastVisible)
+        }
     }
 }
 
@@ -113,11 +140,6 @@ fun EmptyResult() {
         modifier = Modifier.padding(8.dp),
         text = stringResource(R.string.search_not_found)
     )
-}
-
-@Composable
-fun ErrorResult() {
-
 }
 
 @Composable

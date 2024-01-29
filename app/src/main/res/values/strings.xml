@@ -4,4 +4,10 @@
     <string name="description_icon_back">Icon Back</string>
     <string name="description_icon_search">Icon Search</string>
     <string name="search_not_found">На Ваш запрос ничего не найдено</string>
+    <string name="description_icon_arrowback">Icon ArrowBack</string>
+    <string name="descroption_icon_favorite">Icon Favorite</string>
+    <string name="description_icon_weather">Icon Weather</string>
+    <string name="forecast_3_day">Прогноз на 3 дня</string>
+    <string name="icon_edit">Icon Edit</string>
+    <string name="add_favorite">Add Favorite</string>
 </resources>

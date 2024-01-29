@@ -38,11 +38,13 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.github.gunin_igor75.weatherapp.R
 import com.github.gunin_igor75.weatherapp.domain.entity.City
 import com.github.gunin_igor75.weatherapp.presentation.extensions.convertTemp
 import com.github.gunin_igor75.weatherapp.presentation.ui.theme.CardGradients
@@ -115,11 +117,11 @@ private fun SearchCard(
             Icon(
                 modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp),
                 imageVector = Icons.Filled.Search,
-                contentDescription = "Icon Search",
+                contentDescription = stringResource(id = R.string.description_icon_search),
                 tint = MaterialTheme.colorScheme.background
             )
             Text(
-                text = "Search",
+                text = stringResource(id = R.string.search),
                 color = MaterialTheme.colorScheme.background
             )
         }
@@ -218,7 +220,7 @@ fun BoxScope.ContentLoaded(state: FavoriteStore.State.WeatherState.Loaded) {
             .align(Alignment.TopEnd)
             .size(56.dp),
         model = state.iconUrl,
-        contentDescription = "Icon weather"
+        contentDescription = stringResource(id = R.string.description_icon_weather)
     )
 }
 
@@ -273,13 +275,13 @@ private fun AddCityCard(
                     .size(48.dp)
                     .align(Alignment.CenterHorizontally),
                 imageVector = Icons.Filled.Edit,
-                contentDescription = "Icon Edit",
+                contentDescription = stringResource(R.string.icon_edit),
                 tint = Orange
             )
             Spacer(modifier = Modifier.weight(1f))
             Text(
                 modifier = Modifier.align(Alignment.CenterHorizontally),
-                text = "Add Favorite",
+                text = stringResource(R.string.add_favorite),
                 style = MaterialTheme.typography.titleMedium
             )
         }

@@ -39,12 +39,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.github.gunin_igor75.weatherapp.R
 import com.github.gunin_igor75.weatherapp.domain.entity.Forecast
 import com.github.gunin_igor75.weatherapp.domain.entity.Weather
 import com.github.gunin_igor75.weatherapp.presentation.extensions.convertDateFullToString
@@ -126,7 +128,7 @@ fun AppTopBar(
             IconButton(onClick = { onclickBack() }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = "Icon ArrowBack",
+                    contentDescription = stringResource(R.string.description_icon_arrowback),
                     tint = color
                 )
             }
@@ -140,7 +142,7 @@ fun AppTopBar(
             IconButton(onClick = { onClickChangeFavoriteStatus() }) {
                 Icon(
                     imageVector = icon,
-                    contentDescription = "Icon Favorite",
+                    contentDescription = stringResource(R.string.descroption_icon_favorite),
                     tint = color
                 )
             }
@@ -214,7 +216,7 @@ fun CurrentWeather(
         )
         GlideImage(
             model = weather.conditionUrl,
-            contentDescription = "Icon Weather",
+            contentDescription = stringResource(R.string.description_icon_weather),
             modifier = Modifier.size(70.dp)
         )
     }
@@ -244,7 +246,7 @@ fun Forecasts(
         ) {
             Text(
                 modifier = Modifier.padding(bottom = 16.dp),
-                text = "Прогноз на 3 дня",
+                text = stringResource(R.string.forecast_3_day),
                 style = MaterialTheme.typography.titleMedium
             )
             Row(
@@ -282,7 +284,7 @@ fun RowScope.ForecastDay(
             Text(text = weather.tempC.convertTemp())
             GlideImage(
                 model = weather.conditionUrl,
-                contentDescription = "Icon Weather"
+                contentDescription = stringResource(id = R.string.description_icon_weather)
             )
             Text(text = weather.date.convertDateToDayWeek())
         }
